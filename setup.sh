@@ -1,6 +1,6 @@
 #/bin/bash
 
-yum install docker-ce -y
+yum install docker -y
 
 yum install socat -y
 
@@ -16,7 +16,7 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 
 install minikube /usr/local/bin
 
-minikube start
+minikube start --vm-driver=none
 
 
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
