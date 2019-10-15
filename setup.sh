@@ -27,6 +27,8 @@ kubectl create clusterrolebinding tiller     --clusterrole cluster-admin     --s
 
 helm init --service-account tiller
 
+helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
+
 helm repo update
 
 kubectl get deploy,svc tiller-deploy -n kube-system
